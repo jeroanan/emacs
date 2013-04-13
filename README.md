@@ -1,4 +1,4 @@
 emacs
 =====
 
-my emacs
+my emacs configuration files
