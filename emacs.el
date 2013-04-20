@@ -34,6 +34,12 @@
 (set-cursor-color "black")
 (put 'downcase-region 'disabled nil)
 
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 (defun show-trailing-whitespace ()
   (interactive "*")
    "Show trailing whitespace"
