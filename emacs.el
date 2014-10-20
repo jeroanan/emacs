@@ -8,7 +8,6 @@
 (global-unset-key "\C-xm")
 (global-unset-key "\C-x\C-b")
 (global-set-key "\C-xm" 'execute-extended-command)
-
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 
 (defun xhtml-doctype-strict ()
@@ -113,6 +112,28 @@
   (search-backward "<")
   (kill-line)
 )
+
+(defun sql-server-trigger ()
+  "create a new Sql Server trigger"
+  (interactive "*")
+  (setq vName (read-string "Trigger name: "))
+  (setq tName (read-string "Table name: "))
+  (insert "IF dbo.TriggerExists('" tName "','" vName "')=0\n")
+  (insert "BEGIN\n")
+  (insert "CREATE TRIGGER dbo." vName "\n")
+  (insert "ON dbo." tName "\n")
+  (insert "AFTER INSERT, UPDATE\n")
+  (insert "AS\n")
+  (insert "BEGIN\n")
+  (insert "<DEFINITION HERE>\n")
+  (insert "END\n")
+  (insert "\nGO\n\n")
+  (search-backward "<")
+  (kill-line)
+)
+(color-theme-solarized-dark)
+
+(load-library "/emacs/mq.el")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
