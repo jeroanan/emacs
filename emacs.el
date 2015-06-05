@@ -123,3 +123,10 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
            (random (expt 16 4))
            (random (expt 16 6))
            (random (expt 16 6)) ) ) )
+           
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
