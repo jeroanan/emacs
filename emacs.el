@@ -10,7 +10,7 @@
 (global-set-key "\C-xm" 'execute-extended-command)
 (global-set-key "\M-." 'jedi:goto-definition)
 (global-set-key "\M-," 'jedi:goto-definition-pop-marker)
-(global-set-key "\M-/" 'jedi:get-in-function-call)
+
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 
