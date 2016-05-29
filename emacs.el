@@ -1,4 +1,4 @@
-(global-set-key [f5] "\M-x ansi-term")
+(global-set-key [f5] "\M-x eshell")
 (global-set-key [f10] 'save-buffers-kill-emacs)
 (global-set-key [f11] 'revert-buffer)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
