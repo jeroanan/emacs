@@ -1,4 +1,5 @@
 (global-set-key [f5] "\M-x ansi-term")
+(global-set-key [f6] "\M-x magit-status")
 (global-set-key [f10] 'save-buffers-kill-emacs)
 (global-set-key [f11] 'revert-buffer)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
@@ -35,7 +36,7 @@
 
 (require 'package)
 
-(setq package-list '(projectile auto-complete jedi))
+(setq package-list '(projectile auto-complete jedi magit))
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
