@@ -11,7 +11,6 @@
 (global-set-key "\M-." 'jedi:goto-definition)
 (global-set-key "\M-," 'jedi:goto-definition-pop-marker)
 
-
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 
 (defun xhtml-doctype-strict ()
@@ -35,10 +34,20 @@
 (put 'downcase-region 'disabled nil)
 
 (require 'package)
+
+(setq package-list '(projectile auto-complete jedi))
+
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+	 (package-install package)))
 
 (setq show-trailing-whitespace 1)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -54,54 +63,12 @@
 (setq ac-show-menu-immediately-on-auto-complete t)
 
 (require 'jedi)
-(setq jedi:server-args 
+(setq jedi:server-args
 		'("--sys-path" "/home/david/src/GameCollection"))
 
 (defvar jedi-config:vcs-root-sentinel ".git")
 (defvar jedi-config:python-module-sentinel "__init__.py")
 (add-hook 'python-mode-hook 'jedi:setup)
-
-;; (setq jedi:complete-on-dot t)
-
-;; (defun get-project-root (buf repo-type init-file)
-;;   (vc-find-root (expand-file-name (buffer-file-name buf)) repo-type))
-
-;; (defvar jedi-config:find-root-function 'get-project-root)
-
-;; (defun current-buffer-project-root ()
-;;   (funcall jedi-config:find-root-function
-;; 			  (current-buffer)
-;; 			  jedi-config:vcs-root-sentinel
-;; 			  jedi-config:python-module-sentinel))
-
-
-
-;; (add-to-list 'ac-sources 'ac-source-jedi-direct)
-
-;; (defvar jedi-config:with-virtualenv nil)
-
-
-
-;; (defun jedi-config:setup-server-args ()
-;;   (defmacro add-args (arg-list arg-name arg-value)
-;;   	 '(setq ,arg-list (append ,arg-list (list ,arg-name ,arg-value))))
-
-;;    (let ((project-root (current-buffer-project-root)))
-
-;; 	  (make-local-variable 'jedi:server-args)
-
-;; 	  (when project-root
-;; 		 (add-args jedi:server-args "--sys-path" project-root))))
-
-;; (add-hook 'python-mode-hook 'jedi-config:setup-server-args)
-
-
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((todo-categories "#" "r2r" "a" "arse" "new" "wl") (todo-categories "a" "arse" "new" "wl") (todo-categories "arse" "new" "wl") (todo-categories "wl" "Todo")))))
 
 (set-frame-parameter (selected-frame) 'alpha '(85 50))
 (add-to-list 'default-frame-alist '(alpha 85 50))
@@ -111,7 +78,6 @@
 (defun insert-random-uuid ()
   "Insert a random UUID.
 Example of a UUID: 1df63142-a513-c850-31a3-535fc3520c3d
-
 WARNING: this is a simple implementation. The chance of generating the same UUID is much higher than a robust algorithm.."
   (interactive)
   (insert
