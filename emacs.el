@@ -9,8 +9,8 @@
 (global-unset-key "\C-xm")
 (global-unset-key "\C-x\C-b")
 (global-set-key "\C-xm" 'execute-extended-command)
-(global-set-key "\M-." 'jedi:goto-definition)
-(global-set-key "\M-," 'jedi:goto-definition-pop-marker)
+(global-set-key "\C-x>" 'replace-string)
+(global-set-key "\C-x/" 'comment-region)
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 
