@@ -15,6 +15,8 @@
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 
+(setq-default indent-tabs-mode nil)
+
 (defun xhtml-doctype-strict ()
  "insert doctype"
  (interactive "*")
