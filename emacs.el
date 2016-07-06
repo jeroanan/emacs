@@ -97,3 +97,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
+(setq js-indent-level 2)
+
+;; turn off the bell
+(setq ring-bell-function 'ignore)
