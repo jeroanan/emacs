@@ -9,6 +9,7 @@
 (global-unset-key "\C-x\C-z")
 (global-unset-key "\C-xm")
 (global-unset-key "\C-x\C-b")
+
 (global-set-key "\C-xm" 'execute-extended-command)
 (global-set-key "\C-x>" 'replace-string)
 (global-set-key "\C-x/" 'comment-region)
@@ -17,28 +18,25 @@
 
 (setq-default indent-tabs-mode nil)
 
-(defun xhtml-doctype-strict ()
- "insert doctype"
- (interactive "*")
- (insert "&lt;!DOCTYPE html
-       PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"
-       \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"&gt;")
-)
-
 (server-start)
+
+;; Get rid of unneeded screen chrome.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq make-backup-files nil)
 (column-number-mode)
-(put 'upcase-region 'disabled nil)
+
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time)
+
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (require 'package)
 
+; The contents of package-list will be downloaded and installed on startup if they're not already present.
 (setq package-list '(projectile auto-complete jedi magit))
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
