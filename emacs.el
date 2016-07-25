@@ -99,3 +99,35 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 
 ;; turn off the bell
 (setq ring-bell-function 'ignore)
+
+(defun zip-directory (directory-name)
+  "Zip a directory name into the same name.zip"
+  (interactive)
+  (async-shell-command (concat "zip -r " directory-name ".zip " directory-name)))
+
+(defun javascript-doc-skeleton()
+  "Insert a sekeleton javascript docstring"
+  (interactive)
+  (insert-string "/**\n")
+  (insert-string " * ")
+  (beginning-of-line)
+  (indent-relative)
+  (end-of-line)
+  (insert-string " \n*/")
+  (beginning-of-line)
+  (indent-relative)  
+  (previous-line)
+  (end-of-line))
+
+(defun msbuild-solution(solution-path)
+  (interactive)
+  (let ((msbuild-path "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"))
+    (async-shell-command (concat msbuild-path "/MSBuild.exe " solution-path))))
+                     
+(defun msbuild-publish-solution(solution-path publish-profile)
+  (interactive)
+
+  (let* ((msbuild-path "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/")
+         (command-line (concat msbuild-path "/MSBuild.exe " solution-path " /p:DeployOnBuild=true /p:PublishProfile=" publish-profile)))
+    (message command-line)
+    (async-shell-command command-line)))
