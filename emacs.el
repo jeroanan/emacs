@@ -15,7 +15,7 @@
 (global-set-key "\C-x/" 'comment-region)
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
-
+(global-set-key "\C-x\C-p" 'emms-pause)
 (setq-default indent-tabs-mode nil)
 
 (server-start)
@@ -99,3 +99,5 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 
 ;; turn off the bell
 (setq ring-bell-function 'ignore)
+
+(add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
