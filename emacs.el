@@ -101,6 +101,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 (setq ring-bell-function 'ignore)
 
 (add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
 
 (defun zip-directory (directory-name)
   "Zip a directory name into the same name.zip"
