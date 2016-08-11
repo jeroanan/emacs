@@ -16,7 +16,6 @@
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-x\C-p" 'emms-pause)
-(setq-default indent-tabs-mode nil)
 
 (server-start)
 
@@ -27,6 +26,7 @@
 (setq make-backup-files nil)
 (column-number-mode)
 
+;; Status bar settings
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
 (display-time)
@@ -34,6 +34,7 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
+;; Package management
 (require 'package)
 
 ; The contents of package-list will be downloaded and installed on startup if they're not already present.
@@ -51,10 +52,19 @@
   (unless (package-installed-p package)
 	 (package-install package)))
 
+;; Add file extensions to major modes
+(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
+
+;; General editing preferences
 (setq show-trailing-whitespace 1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq default-tab-width 3);; (add-to-list 'package-archives
+(setq default-tab-width 3)
 (setq indent-tabs-mode -1)
+(global-linum-mode 1) ;; Line numbers in all buffers
+(setq ring-bell-function 'ignore) ;; turn off the bell
+(setq js-indent-level 2)
+(add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
 
 ;; Python IDE -- https://www.youtube.com/watch?v=6BlTGPsjGJk
 (require 'projectile)
@@ -95,13 +105,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-(setq js-indent-level 2)
 
-;; turn off the bell
-(setq ring-bell-function 'ignore)
-
-(add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
 
 (defun zip-directory (directory-name)
   "Zip a directory name into the same name.zip"
