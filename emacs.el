@@ -110,7 +110,11 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 (defun zip-directory (directory-name)
   "Zip a directory name into the same name.zip"
   (interactive)
-  (async-shell-command (concat "zip -r " directory-name ".zip " directory-name)))
+  (let ((zip-file-name (concat directory-name ".zip")))
+	 (if (file-exists-p zip-file-name)
+		  (delete-file zip-file-name)
+		()) 
+	 (async-shell-command (concat "zip -r " zip-file-name " " directory-name))))
 
 (defun javascript-doc-skeleton()
   "Insert a sekeleton javascript docstring"
