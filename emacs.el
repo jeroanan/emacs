@@ -20,9 +20,15 @@
 (server-start)
 
 ;; Get rid of unneeded screen chrome.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(defun turn-off-screen-crap ()
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
+
+(case window-system
+  (x (turn-off-screen-crap))
+  (otherwise ()))
+
 (setq make-backup-files nil)
 (column-number-mode)
 
