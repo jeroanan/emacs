@@ -4,6 +4,7 @@
 (global-set-key [f10] 'save-buffers-kill-emacs)
 (global-set-key [f11] 'revert-buffer)
 (global-set-key "\C-x\C-m" 'execute-extended-command)
+
 (global-unset-key "\C-z")
 (global-unset-key "\C-x\C-z")
 (global-unset-key "\C-xm")
@@ -15,6 +16,8 @@
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-x\C-p" 'emms-pause)
+
+(global-set-key "\C-Z" 'zap-up-to-char)
 
 (defun auto-complete-mode-maybe ()
   ""
@@ -120,7 +123,9 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
   (interactive)
   (let ((msbuild-path "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"))
     (async-shell-command (concat msbuild-path "/MSBuild.exe " solution-path))))
-                     
+
+(setq js-indent-level 4)
+
 (defun msbuild-publish-solution(solution-path publish-profile)
   (interactive)
 
@@ -129,10 +134,25 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
     (message command-line)
     (async-shell-command command-line)))
 
+(defun do-mu4e ()
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
 (setq mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval 300)
+      mu4e-update-interval 300))
+
+(if (string= system-type "gnu/linux")
+    (do-mu4e)
+  ())
+
+;; Windows stuff
+(defun windows-init ()
+  (setenv "PATH"
+	(concat
+	 "C:\\cygwin64\\bin;"
+	 (getenv "PATH"))))
+
+(when (string= system-type "windows-nt")
+  (windows-init))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
