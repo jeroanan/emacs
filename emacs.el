@@ -15,8 +15,6 @@
 (global-set-key "\C-x/" 'comment-region)
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
-(global-set-key "\C-x\C-p" 'emms-pause)
-
 (global-set-key "\C-Z" 'zap-up-to-char)
 
 (defun auto-complete-mode-maybe ()
@@ -113,15 +111,9 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 		())
 	 (async-shell-command (concat "zip -r " zip-file-name " " directory-name))))
 
-(defun do-mu4e ()
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(setq mu4e-get-mail-command "mbsync -a"
-      mu4e-update-interval 300))
 
-(if (string= system-type "gnu/linux")
-    (do-mu4e)
-  ())
+(when (string= system-type "gnu/linux")
+    (load "~/.emacs.d/gnu-specific.el"))
 
 (when (string= system-type "windows-nt")
   (load "windows-specific.el"))
