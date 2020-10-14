@@ -16,6 +16,7 @@
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-Z" 'zap-up-to-char)
+(global-set-key "\C-x\C-j" 'join-to-next-line)
 
 (defun auto-complete-mode-maybe ()
   ""
@@ -111,12 +112,16 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 		())
 	 (async-shell-command (concat "zip -r " zip-file-name " " directory-name))))
 
-
 (when (string= system-type "gnu/linux")
     (load "~/.emacs.d/gnu-specific.el"))
 
 (when (string= system-type "windows-nt")
   (load "windows-specific.el"))
+
+(defun join-to-next-line ()
+  (interactive)
+  (next-line)
+  (join-line))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
