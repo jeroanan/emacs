@@ -24,13 +24,9 @@
   (unless (minibufferp (current-buffer))
     (auto-complete-mode t)))
 
-
 (setq ac-modes '(racket-mode))
 
 (server-start)
-
-;(setq viper-mode t)
-;(require 'viper)
 
 (setq inhibit-startup-message t)
 
@@ -70,11 +66,6 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
-;(linum-relative-global-mode)
-
-;; Add file extensions to major modes
-(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
-
 ;; General editing preferences
 (setq show-trailing-whitespace 1)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -83,9 +74,12 @@
 (global-linum-mode 1) ;; Line numbers in all buffers
 
 (setq ring-bell-function 'ignore) ;; turn off the bell
-(setq js-indent-level 2)
+
 (add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
+
+;; javascrpit preferences
+(setq js-indent-level 4)
 
 (random t)
 
@@ -103,7 +97,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
            (random (expt 16 4))
            (random (expt 16 6))
            (random (expt 16 6)) ) ) )
-           
+
 (defun remove-dos-eol ()
   "Do not show ^M in files containing mixed UNIX and DOS line endings."
   (interactive)
@@ -116,23 +110,8 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
   (let ((zip-file-name (concat directory-name ".zip")))
 	 (if (file-exists-p zip-file-name)
 		  (delete-file zip-file-name)
-		()) 
+		())
 	 (async-shell-command (concat "zip -r " zip-file-name " " directory-name))))
-
-(defun msbuild-solution(solution-path)
-  (interactive)
-  (let ((msbuild-path "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/"))
-    (async-shell-command (concat msbuild-path "/MSBuild.exe " solution-path))))
-
-(setq js-indent-level 4)
-
-(defun msbuild-publish-solution(solution-path publish-profile)
-  (interactive)
-
-  (let* ((msbuild-path "C:/Windows/Microsoft.NET/Framework64/v4.0.30319/")
-         (command-line (concat msbuild-path "/MSBuild.exe " solution-path " /p:DeployOnBuild=true /p:PublishProfile=" publish-profile)))
-    (message command-line)
-    (async-shell-command command-line)))
 
 (defun do-mu4e ()
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -144,15 +123,8 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
     (do-mu4e)
   ())
 
-;; Windows stuff
-(defun windows-init ()
-  (setenv "PATH"
-	(concat
-	 "C:\\cygwin64\\bin;"
-	 (getenv "PATH"))))
-
 (when (string= system-type "windows-nt")
-  (windows-init))
+  (load "windows-specific.el"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
