@@ -48,7 +48,15 @@
 (require 'package)
 
 ; The contents of package-list will be downloaded and installed on startup if they're not already present.
-(setq package-list '(projectile auto-complete jedi solarized-theme magit racket-mode linum-relative))
+(setq package-list '(auto-complete
+		     solarized-theme
+		     magit
+		     racket-mode
+		     linum-relative
+		     rainbow-delimiters
+		     evil
+		     markdown-mode
+		     nyan-mode))
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
@@ -72,7 +80,11 @@
 (setq indent-tabs-mode -1)
 (global-linum-mode 1) ;; Line numbers in all buffers
 
-(setq ring-bell-function 'ignore) ;; turn off the bell
+;;Activate evil-mode
+(unless evil-mode (evil-mode))
+
+;; nyan nyan nyan
+(unless nyan-mode (nyan-mode))
 
 (add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
@@ -112,11 +124,11 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 		())
 	 (async-shell-command (concat "zip -r " zip-file-name " " directory-name))))
 
-(when (string= system-type "gnu/linux")
-    (load "~/.emacs.d/gnu-specific.el"))
-
-(when (string= system-type "windows-nt")
-  (load "windows-specific.el"))
+;; Load OS-specific init
+(cond ((string= system-type "gnu/linux")
+       (load "~/.emacs.d/gnu-specific.el"))
+      ((string= system-type "windows-nt")
+       (load "windows-specific.el")))
 
 (defun join-to-next-line ()
   (interactive)
@@ -172,7 +184,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
- '(vc-annotate-background-mode nil)
+ '(vc-annotate-background-moode nil)
  '(vc-annotate-color-map
    '((20 . "#dc322f")
      (40 . "#cb4366eb20b4")
