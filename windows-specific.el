@@ -11,6 +11,10 @@
     (message command-line)
     (async-shell-command command-line)))
 
+(defun open-in-explorer ()
+  (interactive)
+  (call-process-shell-command (concat "start " default-directory) nil 0))
+
 ;;; Add file extensions to major modes
 (add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
 
@@ -18,3 +22,4 @@
 	(concat
 	 "C:\\cygwin64\\bin;"
 	 (getenv "PATH")))
+
