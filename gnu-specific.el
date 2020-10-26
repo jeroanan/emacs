@@ -11,3 +11,11 @@
 (defun get-cpu-temp ()
   (interactive)
   (message (shell-command-to-string  "/opt/vc/bin/vcgencmd measure_temp")))
+
+;; slime stuff
+(setq inferior-lisp-program "/usr/bin/sbcl")
+;; emms config
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(setq emms-source-file-default-directory "~/Music/")
