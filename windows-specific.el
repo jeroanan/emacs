@@ -23,3 +23,5 @@
 	 "C:\\cygwin64\\bin;"
 	 (getenv "PATH")))
 
+
+(global-set-key [f9] 'open-in-explorer)
