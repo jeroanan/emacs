@@ -62,7 +62,8 @@
 		     evil
 		     markdown-mode
 		     nyan-mode
-		     helm))
+		     helm
+		     lavender-theme))
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
@@ -162,12 +163,14 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
- '(custom-enabled-themes '(solarized-gruvbox-dark))
+ '(custom-enabled-themes '(lavender))
  '(custom-safe-themes
    '("70936e3b54ca6d668354fdc87eea5f0a5129380c0c459598be943efba6ae1563" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
+ '(display-battery-mode t)
  '(erc-nick "jeroanan")
  '(erc-user-full-name nil)
  '(fci-rule-color "#073642")
+ '(helm-mode t)
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-colors
    '("#3b6b40f432d6" "#07b9463c4d36" "#47a3341e358a" "#1d873c3f56d5" "#2d86441c3361" "#43b7362d3199" "#061d417f59d7"))
@@ -189,7 +192,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(lsp-ui-doc-border "#93a1a1")
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
- '(nyan-mode nil)
+ '(nyan-mode t)
  '(package-selected-packages
    '(helm exwm vterm lavender-theme csharp-mode nyan-mode markdown-mode evil rainbow-delimiters emms linum-relative racket-mode solarized-theme slime auto-complete))
  '(pos-tip-background-color "#073642")
