@@ -15,6 +15,27 @@
   (interactive)
   (call-process-shell-command (concat "start " default-directory) nil 0))
 
+;; JIRA helpers
+(defun jira-browse-issue ()
+  (interactive)
+  (if (boundp 'jira-base-url)
+    (progn
+      (setq issue-number (read-string "Issue number:"))
+      (call-process-shell-command (concat "start " jira-base-url "/browse/" issue-number)))
+    (message "jira-base-url is not set")))
+
+
+;; Config file management
+(defun export-config-to-git ()
+  (interactive)
+  (if (boundp 'emacs-config-git-dir)
+      (progn
+	(copy-file "~/.emacs" (concat emacs-config-git-dir "/emacs.el") "y")
+	(copy-file "~/windows-specific.el" (concat emacs-config-git-dir "/windows-specific.el") "y")
+	(message "config exported to git. Don't forget to go and commit it!"))
+    (message "emacs-config-git-dir is not set.")))
+	
+
 ;;; Add file extensions to major modes
 (add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
 

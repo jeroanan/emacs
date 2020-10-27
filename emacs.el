@@ -128,7 +128,12 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
 (cond ((string= system-type "gnu/linux")
        (load "~/.emacs.d/gnu-specific.el"))
       ((string= system-type "windows-nt")
-       (load "windows-specific.el")))
+       (load "~/windows-specific.el")))
+
+;;Load site-specific init
+(setq site-specific-config "~/site-specific.el")
+(when (file-exists-p "~/site-specific.el")
+  (load site-specific-config))
 
 (defun join-to-next-line ()
   (interactive)
@@ -152,8 +157,6 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(custom-enabled-themes '(solarized-gruvbox-dark))
  '(custom-safe-themes
    '("51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
- '(erc-nick "jeroanan")
- '(erc-user-full-name nil)
  '(fci-rule-color "#073642")
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-colors
@@ -177,14 +180,14 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
  '(package-selected-packages
-   '(nyan-mode markdown-preview-mode markdown-mode scribble-mode evil rainbow-delimiters emms linum-relative racket-mode solarized-theme slime auto-complete))
+   '(csharp-mode nyan-mode markdown-mode evil rainbow-delimiters emms linum-relative racket-mode solarized-theme slime auto-complete))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
  '(vc-annotate-background nil)
- '(vc-annotate-background-moode nil)
+ '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
    '((20 . "#dc322f")
      (40 . "#cb4366eb20b4")
