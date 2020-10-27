@@ -25,8 +25,6 @@
 
 (setq ac-modes '(racket-mode))
 
-(server-start)
-
 (setq inhibit-startup-message t)
 
 (menu-bar-mode -1)
