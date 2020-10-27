@@ -221,3 +221,4 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  ;; If there is more than one, they won't work right.
  )
 (put 'erase-buffer 'disabled nil)
+(put 'magit-clean 'disabled nil)
