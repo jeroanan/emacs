@@ -12,6 +12,28 @@
   (interactive)
   (message (shell-command-to-string  "/opt/vc/bin/vcgencmd measure_temp")))
 
+;; Backlight
+(defun show-backlight-level ()
+  (interactive)
+  (message (concat "Backlight: "
+		  (string-trim (shell-command-to-string "xbacklight")))))
+
+(defun backlight-set ()
+  (interactive)
+  (let ((x (read-string "Set backlight to: ")))
+    (shell-command (concat "xbacklight -set " x))
+    (show-backlight-level)))
+
+(defun backlight-up ()
+  (interactive)
+  (shell-command "xbacklight +10")
+  (show-backlight-level))
+
+(defun backlight-down ()
+  (interactive)
+  (shell-command "xbacklight -10")
+  (show-backlight-level))
+
 ;; slime stuff
 (setq inferior-lisp-program "/usr/bin/sbcl")
 ;; emms config
