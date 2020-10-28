@@ -18,13 +18,6 @@
 (global-set-key "\C-Z" 'zap-up-to-char)
 (global-set-key "\C-x\C-j" 'join-to-next-line)
 
-
-;; helm
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key "\C-x\C-m" 'helm-M-x)
-
-(helm-mode 1)
-
 (defun auto-complete-mode-maybe ()
   ""
   (unless (minibufferp (current-buffer))
@@ -76,6 +69,12 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
 	 (package-install package)))
+
+;; helm
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key "\C-x\C-m" 'helm-M-x)
+
+(helm-mode 1)
 
 (require 'auto-complete)
 (global-auto-complete-mode t)
