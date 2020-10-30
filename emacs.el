@@ -90,6 +90,9 @@
 (require 'evil)
 (evil-mode 1)
 
+;; Disable evil for some modes...
+(evil-set-initial-state 'dired-mode 'emacs)
+
 ;; nyan nyan nyan
 (require 'nyan-mode)
 (nyan-mode 1)
