@@ -1,31 +1,16 @@
 ;; Package management
 (require 'package)
 
-; The contents of package-list will be downloaded and installed on startup if they're not already present.
-(setq package-list '(auto-complete
-		     solarized-theme
-		     magit
-		     racket-mode
-		     linum-relative
-		     rainbow-delimiters
-		     evil
-		     markdown-mode
-		     nyan-mode
-		     helm
-		     lavender-theme
-		     use-package))
-
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
 
-(dolist (package package-list)
-  (unless (package-installed-p package)
-	 (package-install package)))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
 
 (use-package emacs
   :ensure nil
@@ -40,31 +25,54 @@
   (default-tab-width 3)
   (random t))
 
-(use-package time
-  :custom
-  (display-time-24hr-format t)
-  (display-time-day-and-date t)
-  (display-time-mode t))
+(use-package auto-complete
+  :ensure t
+  :demand t
+  :config
+  (global-auto-complete-mode t))
 
+;; Ensured packages -- these will be auto-loaded if not already present
 (use-package evil
-  :custom
+  :ensure t
+  :demand t
+  :config
   (evil-mode 1))
 
 (use-package helm
-  :custom
+  :ensure t
+  :config
   (helm-mode t))
 
-(use-package auto-complete
-  (global-auto-complete-mode t))
+(use-package linum-relative
+  :ensure t
+  :demand t
+  :config
+  (linum-relative-mode t))
+
+(use-package magit
+  :ensure t)
 
 ;; nyan nyan nyan
 (use-package nyan-mode
-  :custom
+  :ensure t
+  :demand t
+  :config
   (nyan-mode t))
+
+(use-package rainbow-delimiters
+  :ensure t)
 
 (use-package js
   :custom
-  (setq js-indent-level 4))
+  (js-indent-level 4))
+
+(use-package time
+  :demand t
+  :custom
+  (display-time-24hr-format t)
+  (display-time-day-and-date t)
+  :config
+  (display-time-mode t))
 
 (global-set-key [f5] "\M-x eshell")
 (global-set-key [f6] "\M-x magit-status")
@@ -116,7 +124,7 @@
 (add-hook 'newsticker-treeview-mode-hook (lambda ()
 					   (turn-off-evil-mode)))
 
-(add-hook 'racket-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'elisp-mode-hook 'rainbow-delimiters-mode)
 
 
@@ -188,7 +196,6 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(erc-user-full-name nil)
  '(fci-rule-color "#073642")
  '(helm-completion-style 'emacs)
- '(helm-mode t)
  '(highlight-changes-colors '("#d33682" "#6c71c4"))
  '(highlight-symbol-colors
    '("#3b6b40f432d6" "#07b9463c4d36" "#47a3341e358a" "#1d873c3f56d5" "#2d86441c3361" "#43b7362d3199" "#061d417f59d7"))
@@ -212,9 +219,8 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
    '(("Arch Linux News" "https://www.archlinux.org/feeds/news/" nil nil nil)))
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
- '(nyan-mode t)
  '(package-selected-packages
-   '(use-package helm exwm vterm lavender-theme csharp-mode nyan-mode markdown-mode evil rainbow-delimiters emms linum-relative racket-mode solarized-theme slime auto-complete))
+   '(auto-complete use-package helm exwm vterm lavender-theme csharp-mode markdown-mode evil rainbow-delimiters emms racket-mode solarized-theme slime))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
