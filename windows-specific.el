@@ -38,6 +38,7 @@
 
 ;;; Add file extensions to major modes
 (add-to-list 'auto-mode-alist '("\\.cshtml\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.csproj" . nxml-mode))
 
 (setenv "PATH"
 	(concat

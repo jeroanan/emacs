@@ -85,14 +85,20 @@
 (global-unset-key "\C-x\C-z")
 (global-unset-key "\C-xm")
 (global-unset-key "\C-x\C-b")
+(global-unset-key "\C-\\")
 
 (global-set-key "\C-xm" 'execute-extended-command)
 (global-set-key "\C-x>" 'replace-string)
 (global-set-key "\C-x/" 'comment-region)
+(global-set-key "\C-\\" 'list-buffers)
 
 (global-set-key "\C-x\C-b" 'switch-to-buffer)
 (global-set-key "\C-Z" 'zap-up-to-char)
 (global-set-key "\C-x\C-j" 'join-to-next-line)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key "\C-x\C-m" 'helm-M-x)
+(global-set-key "\C-x\C-f" 'helm-find-files)
 
 (defun auto-complete-mode-maybe ()
   ""
@@ -104,9 +110,6 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
-;; helm
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key "\C-x\C-m" 'helm-M-x)
 
 ;; General editing preferences
 (fset 'yes-or-no-p 'y-or-n-p)
