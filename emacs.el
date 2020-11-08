@@ -32,11 +32,23 @@
   (global-auto-complete-mode t))
 
 ;; Ensured packages -- these will be auto-loaded if not already present
+(defun disable-evil-modes ()
+  " Disable evil for some modes..."
+  (setq evil-disabled-modes '(dired-mode
+			      newsticker-mode
+			      newsticker-treeview-mode
+			      eww-mode
+			      vterm-mode))
+
+  (dolist (m evil-disabled-modes)
+    (evil-set-initial-state m 'emacs)))
+
 (use-package evil
   :ensure t
   :demand t
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  (disable-evil-modes))
 
 (use-package helm
   :ensure t
@@ -115,14 +127,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-linum-mode 1) ;; Line numbers in all buffers
 
-;; Disable evil for some modes...
-(setq evil-disabled-modes '('dired-mode
-			    'newsticker-mode
-			    'newsticker-treeview-mode
-			    'eww-mode))
-
-(dolist (m evil-disabled-modes)
-  (evil-set-initial-state m 'emacs))
 
 (add-hook 'newsticker-treeview-mode-hook (lambda ()
 					   (turn-off-evil-mode)))
