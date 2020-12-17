@@ -23,6 +23,7 @@
   (inhibit-startup-message t)
   (make-backup-files nil)
   (default-tab-width 3)
+  (create-lockfiles nil)
   (random t))
 
 (use-package auto-complete
@@ -227,7 +228,7 @@ WARNING: this is a simple implementation. The chance of generating the same UUID
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#5b7300" "#b3c34d" "#0061a8" "#2aa198" "#d33682" "#6c71c4"))
  '(package-selected-packages
-   '(auto-complete use-package helm exwm vterm lavender-theme csharp-mode markdown-mode evil rainbow-delimiters emms racket-mode solarized-theme slime))
+   '(pdf-tools auto-complete use-package helm exwm vterm lavender-theme csharp-mode markdown-mode evil rainbow-delimiters emms racket-mode solarized-theme slime))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
